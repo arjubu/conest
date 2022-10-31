@@ -5,6 +5,7 @@ import com.bu.softwareengineering.contest.domain.enumeration.State;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -23,14 +24,18 @@ public class Team implements Serializable {
     private Long id;
 
     @Column(name = "name")
+    @NotNull(message = "Team name is required!")
     private String name;
 
     @Column(name = "jhi_rank")
     private Integer rank;
 
+    @Column(name = "is_clone_of")
+    private Long isCloneOf;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "state")
-    private State state;
+    private State state = State.PENDING;
 
     @OneToMany(mappedBy = "team")
     private Set<TeamMember> teamMembers = new HashSet<>();
@@ -96,5 +101,13 @@ public class Team implements Serializable {
 
     public void setContestTeams(Set<ContestTeam> contestTeams) {
         this.contestTeams = contestTeams;
+    }
+
+    public Long getIsCloneOf() {
+        return isCloneOf;
+    }
+
+    public void setIsCloneOf(Long isCloneOf) {
+        this.isCloneOf = isCloneOf;
     }
 }

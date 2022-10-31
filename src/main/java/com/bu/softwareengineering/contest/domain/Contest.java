@@ -1,8 +1,13 @@
 package com.bu.softwareengineering.contest.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.NotFound;
+import org.springframework.lang.NonNull;
+import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
@@ -22,13 +27,23 @@ public class Contest implements Serializable {
     private Long id;
 
     @Column(name = "capacity")
+    @NotNull(message = "Capacity can not be empty")
     private Integer capacity;
 
     @Column(name = "date")
+    @NotNull(message = "Please provide a valid date")
     private String date;
 
     @Column(name = "name")
+    @NotNull(message = "Please provide a name ")
     private String name;
+
+    @Column(name= "isWriteable")
+    //@NotNull(message = "Need this flag or null exception will occur!")
+    private Boolean isWriteable = false;
+
+    /*@Column(name = "isReadable")
+    private Boolean isReadable = true;*/
 
     @Column(name = "registration_allowed")
     private Boolean registrationAllowed;
@@ -43,9 +58,13 @@ public class Contest implements Serializable {
     private Set<Contest> contests = new HashSet<>();
 
     @OneToMany(mappedBy = "contest")
+    /*@Size(min = 1,
+            max = 3,
+            message = "Contest team size should be between one and three!")*/
     private Set<ContestTeam> contestTeams = new HashSet<>();
 
     @OneToMany(mappedBy = "contest")
+    /*@Size(min = 1, message = "Contest needs at least one manager")*/
     private Set<ContestManager> contestManagers  = new HashSet<>();
 
     @ManyToOne
@@ -139,4 +158,28 @@ public class Contest implements Serializable {
     public void setParent(Contest parent) {
         this.parent = parent;
     }
+
+    public Boolean getIsWriteable() {
+        return isWriteable;
+    }
+
+    public void setIsWriteable(Boolean isWriteable) {
+        this.isWriteable = isWriteable;
+    }
+
+    /*public Boolean getWriteable() {
+        return isWriteable;
+    }
+
+    public void setWriteable(Boolean writeable) {
+        isWriteable = writeable;
+    }*/
+
+   /* public Boolean getReadable() {
+        return isReadable;
+    }
+
+    public void setReadable(Boolean readable) {
+        isReadable = readable;
+    }*/
 }

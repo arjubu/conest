@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Spring Data  repository for the TeamMember entity.
@@ -15,5 +16,10 @@ import java.util.List;
 @Repository
 public interface TeamMemberRepository extends JpaRepository<TeamMember, Long> {
     public List<TeamMember> getTeamMemberByTeam(Team team);
-    public Person getByPerson(Person person);
+    public Optional<TeamMember> findTeamMemberByPerson(Person person);
+    Optional<TeamMember> findByPersonIdAndTeamIdNot(Long personId, Long teamId);
+    Optional<TeamMember> findByTeamAndPerson(Team team, Person person);
+
+    Optional<TeamMember> findByPersonId(Long id);
+    void deleteAllByTeam(Team team);
 }

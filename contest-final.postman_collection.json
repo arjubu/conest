@@ -6,16 +6,13 @@
 	},
 	"item": [
 		{
-			"name": "create-people",
+			"name": "create-student",
 			"request": {
-				"auth": {
-					"type": "noauth"
-				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"university\":\"Baylor University\",\n    \"name\":\"test_mng5\",\n    \"email\":\"test_mng4@baylor.edu\",\n    \"birthday\":\"1995-09-24\",\n    \"type\":\"MANAGER\"\n}",
+					"raw": "{\n   \"university\":\"Baylor University\",\n   \"name\":\"test_std301\",\n   \"email\":\"test_std301@baylor.edu\",\n   \"birthday\":\"1999-10-24\",\n   \"type\":\"STUDENT\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -23,11 +20,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/person",
+					"raw": "localhost:8082/person",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "8082",
 					"path": [
 						"person"
 					]
@@ -36,16 +33,13 @@
 			"response": []
 		},
 		{
-			"name": "create-team",
+			"name": "create-manager",
 			"request": {
-				"auth": {
-					"type": "noauth"
-				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\":\"TEAM 3\",\n    \"rank\":5,\n    \"state\":\"ACCEPTED\",\n    \"coach\":{\n        \"id\":16\n    },\n    \"teamMembers\":[{\"person\":{\"id\":8}},\n    {\"person\":{\"id\":10}},\n    {\"person\":{\"id\":12}}]\n}",
+					"raw": "{\n   \"university\":\"Baylor University\",\n   \"name\":\"test_mng201\",\n   \"email\":\"test_mn201@baylor.edu\",\n   \"birthday\":\"1990-10-24\",\n   \"type\":\"MANAGER\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -53,13 +47,13 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/teams",
+					"raw": "localhost:8082/person",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "8082",
 					"path": [
-						"teams"
+						"person"
 					]
 				}
 			},
@@ -75,7 +69,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n   \"capacity\":20,\n   \"date\":\"2022-12-10\",\n   \"name\":\"CONTEST-001-SUB2\",\n   \"registrationAllowed\":true,\n   \"registrationFrom\":\"2022-12-10\",\n   \"registrationTo\":\"2022-12-10\",\n   \"parent\":{\n      \"id\":2\n   },\n   \"contestTeams\":[\n      {\n         \"team\":{\n            \"id\":1\n         }\n      },\n      {\n         \"team\":{\n            \"id\":2\n         }\n      },\n      {\n         \"team\":{\n            \"id\":3\n         }\n      }\n   ],\n   \"contestManagers\":[\n      {\n         \"person\":{\n            \"id\":19\n         }\n      }\n   ]\n}",
+					"raw": "{\n   \"capacity\":20,\n   \"date\":\"2022-12-10\",\n   \"name\":\"ICPC-SUB-TEST-01\",\n   \"registrationAllowed\":true,\n   \"registrationFrom\":\"2022-12-10\",\n   \"registrationTo\":\"2022-12-10\",\n   \"isWriteable\": true,\n   \"contestManagers\":[\n      {\n         \"person\":{\n            \"id\":54\n         }\n      }\n   ]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -83,11 +77,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/contest",
+					"raw": "localhost:8082/contest",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "8082",
 					"path": [
 						"contest"
 					]
@@ -96,18 +90,637 @@
 			"response": []
 		},
 		{
-			"name": "get-all-contest",
+			"name": "SUCCESS::contest-registration-all-member-new",
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"team\":{\n      \"name\":\"TEAM BAYLOR ICPC 2022\"\n   },\n   \"coach\":{\n      \"university\":\"Baylor University\",\n      \"name\":\"test_coach400\",\n      \"email\":\"test_coach400@baylor.edu\",\n      \"birthday\":\"1990-10-24\",\n      \"type\":\"COACH\"\n   },\n   \"members\":[\n      {\n         \"university\":\"Baylor University\",\n         \"name\":\"test_std401\",\n         \"email\":\"test_std401@baylor.edu\",\n         \"birthday\":\"1999-10-24\",\n         \"type\":\"STUDENT\"\n      },\n      {\n         \"university\":\"Baylor University\",\n         \"name\":\"test_std402\",\n         \"email\":\"test_std402@baylor.edu\",\n         \"birthday\":\"1999-10-24\",\n         \"type\":\"STUDENT\"\n      },\n      {\n         \"university\":\"Baylor University\",\n         \"name\":\"test_std403\",\n         \"email\":\"test_std403@baylor.edu\",\n         \"birthday\":\"1999-10-24\",\n         \"type\":\"STUDENT\"\n      }\n   ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "localhost:8080/contest",
+					"raw": "localhost:8082/contestsRegistration?contestId=8",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "8082",
+					"path": [
+						"contestsRegistration"
+					],
+					"query": [
+						{
+							"key": "contestId",
+							"value": "8"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SUCCESS::contest-registration-team-member-exists",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"team\":{\n      \"name\":\"TEAM BAYLOR ICPC2\"\n   },\n   \"coach\":{\n      \"university\":\"Baylor University\",\n      \"name\":\"test_coach210\",\n      \"email\":\"test_coach210@baylor.edu\",\n      \"birthday\":\"1990-10-24\",\n      \"type\":\"COACH\"\n   },\n   \"members\":[\n      {\n         \"university\":\"Baylor University\",\n         \"name\":\"test_std210\",\n         \"email\":\"test_std210@baylor.edu\",\n         \"birthday\":\"1999-10-24\",\n         \"type\":\"STUDENT\"\n      },\n      {\n         \"id\":49\n      },\n      {\n         \"university\":\"Baylor University\",\n         \"name\":\"test_std211\",\n         \"email\":\"test_std211@baylor.edu\",\n         \"birthday\":\"1999-10-24\",\n         \"type\":\"STUDENT\"\n      }\n   ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/contestsRegistration?contestId=8",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"contestsRegistration"
+					],
+					"query": [
+						{
+							"key": "contestId",
+							"value": "8"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FAIL::contest-registration-new-team-member-is-older-than-24Y",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"team\":{\n      \"name\":\"TEAM BAYLOR ICPC3\"\n   },\n   \"coach\":{\n      \"university\":\"Baylor University\",\n      \"name\":\"test_coach105\",\n      \"email\":\"test_coach105@baylor.edu\",\n      \"birthday\":\"1990-10-24\",\n      \"type\":\"COACH\"\n   },\n   \"members\":[\n      {\n         \"university\":\"Baylor University\",\n         \"name\":\"test_std106\",\n         \"email\":\"test_std106@baylor.edu\",\n         \"birthday\":\"1990-10-24\",\n         \"type\":\"STUDENT\"\n      },\n      {\n         \"university\":\"Baylor University\",\n         \"name\":\"test_std107\",\n         \"email\":\"test_std107@baylor.edu\",\n         \"birthday\":\"1999-10-24\",\n         \"type\":\"STUDENT\"\n      },\n      {\n         \"university\":\"Baylor University\",\n         \"name\":\"test_std108\",\n         \"email\":\"test_std108@baylor.edu\",\n         \"birthday\":\"1999-10-24\",\n         \"type\":\"STUDENT\"\n      }\n   ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/contestsRegistration?contestId=8",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"contestsRegistration"
+					],
+					"query": [
+						{
+							"key": "contestId",
+							"value": "8"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FAIL::contest-registration-existing-team-member-is-older",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"team\":{\n      \"name\":\"TEAM BAYLOR\",\n      \"rank\":8,\n      \"state\":\"ACCEPTED\"\n   },\n   \"coach\":{\n      \"university\":\"Baylor University\",\n      \"name\":\"test_coach23\",\n      \"email\":\"test_coach23@baylor.edu\",\n      \"birthday\":\"1990-10-24\",\n      \"type\":\"COACH\"\n   },\n   \"members\":[\n      {\n         \"id\": 48\n      },\n      {\n         \"university\":\"Baylor University\",\n         \"name\":\"test_std31\",\n         \"email\":\"test_std31@baylor.edu\",\n         \"birthday\":\"1999-10-24\",\n         \"type\":\"STUDENT\"\n      },\n      {\n         \"university\":\"Baylor University\",\n         \"name\":\"test_std32\",\n         \"email\":\"test_std32@baylor.edu\",\n         \"birthday\":\"1999-10-24\",\n         \"type\":\"STUDENT\"\n      }\n   ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/contestsRegistration?contestId=8",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"contestsRegistration"
+					],
+					"query": [
+						{
+							"key": "contestId",
+							"value": "8"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FAIL::contest-registration-team-size-larger-than-three",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"team\":{\n      \"name\":\"TEAM BAYLOR\",\n      \"rank\":8,\n      \"state\":\"ACCEPTED\"\n   },\n   \"coach\":{\n      \"university\":\"Baylor University\",\n      \"name\":\"test_coach23\",\n      \"email\":\"test_coach23@baylor.edu\",\n      \"birthday\":\"1990-10-24\",\n      \"type\":\"COACH\"\n   },\n   \"members\":[\n      {\n         \"id\": 48\n      },\n      {\n         \"university\":\"Baylor University\",\n         \"name\":\"test_std31\",\n         \"email\":\"test_std31@baylor.edu\",\n         \"birthday\":\"1999-10-24\",\n         \"type\":\"STUDENT\"\n      },\n      {\n         \"university\":\"Baylor University\",\n         \"name\":\"test_std32\",\n         \"email\":\"test_std32@baylor.edu\",\n         \"birthday\":\"1999-10-24\",\n         \"type\":\"STUDENT\"\n      },\n      {\n         \"university\":\"Baylor University\",\n         \"name\":\"test_std32\",\n         \"email\":\"test_std32@baylor.edu\",\n         \"birthday\":\"1999-10-24\",\n         \"type\":\"STUDENT\"\n      }\n   ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/contestsRegistration?contestId=8",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"contestsRegistration"
+					],
+					"query": [
+						{
+							"key": "contestId",
+							"value": "8"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FAIL::contest-registration-contest-is-full",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"team\":{\n      \"name\":\"TEAM BAYLOR\"\n   },\n   \"coach\":{\n      \"university\":\"Baylor University\",\n      \"name\":\"test_coach23\",\n      \"email\":\"test_coach23@baylor.edu\",\n      \"birthday\":\"1990-10-24\",\n      \"type\":\"COACH\"\n   },\n   \"members\":[\n      {\n         \"university\":\"Baylor University\",\n         \"name\":\"test_std30\",\n         \"email\":\"test_std30@baylor.edu\",\n         \"birthday\":\"1999-10-24\",\n         \"type\":\"STUDENT\"\n      },\n      {\n         \"university\":\"Baylor University\",\n         \"name\":\"test_std31\",\n         \"email\":\"test_std31@baylor.edu\",\n         \"birthday\":\"1999-10-24\",\n         \"type\":\"STUDENT\"\n      },\n      {\n         \"university\":\"Baylor University\",\n         \"name\":\"test_std32\",\n         \"email\":\"test_std32@baylor.edu\",\n         \"birthday\":\"1999-10-24\",\n         \"type\":\"STUDENT\"\n      }\n   ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/contestsRegistration?contestId=5",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"contestsRegistration"
+					],
+					"query": [
+						{
+							"key": "contestId",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FAIL::contest-registration-team-member-email-is-alreadt-taken",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"team\":{\n      \"name\":\"TEAM BAYLOR ICPC\"\n   },\n   \"coach\":{\n      \"university\":\"Baylor University\",\n      \"name\":\"test_coach100\",\n      \"email\":\"test_coach100@baylor.edu\",\n      \"birthday\":\"1990-10-24\",\n      \"type\":\"COACH\"\n   },\n   \"members\":[\n      {\n         \"university\":\"Baylor University\",\n         \"name\":\"test_std101\",\n         \"email\":\"test_std101@baylor.edu\",\n         \"birthday\":\"1999-10-24\",\n         \"type\":\"STUDENT\"\n      },\n      {\n         \"university\":\"Baylor University\",\n         \"name\":\"test_std102\",\n         \"email\":\"test_std102@baylor.edu\",\n         \"birthday\":\"1999-10-24\",\n         \"type\":\"STUDENT\"\n      },\n      {\n         \"university\":\"Baylor University\",\n         \"name\":\"test_std103\",\n         \"email\":\"test_std103@baylor.edu\",\n         \"birthday\":\"1999-10-24\",\n         \"type\":\"STUDENT\"\n      }\n   ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/contestsRegistration?contestId=8",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"contestsRegistration"
+					],
+					"query": [
+						{
+							"key": "contestId",
+							"value": "8"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FAIL::contest-registration-team-member-exists-in-different-team",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"team\":{\n      \"name\":\"TEAM BAYLOR ICPC23\"\n   },\n   \"coach\":{\n      \"university\":\"Baylor University\",\n      \"name\":\"test_coach111\",\n      \"email\":\"test_coach111@baylor.edu\",\n      \"birthday\":\"1990-10-24\",\n      \"type\":\"COACH\"\n   },\n   \"members\":[\n      {\n         \"university\":\"Baylor University\",\n         \"name\":\"test_std115\",\n         \"email\":\"test_std115@baylor.edu\",\n         \"birthday\":\"1999-10-24\",\n         \"type\":\"STUDENT\"\n      },\n      {\n         \"id\":40\n      },\n      {\n         \"university\":\"Baylor University\",\n         \"name\":\"test_std116\",\n         \"email\":\"test_std116@baylor.edu\",\n         \"birthday\":\"1999-10-24\",\n         \"type\":\"STUDENT\"\n      }\n   ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/contestsRegistration?contestId=8",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"contestsRegistration"
+					],
+					"query": [
+						{
+							"key": "contestId",
+							"value": "8"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FAIL::contest-registration-contest-is-read-only",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"team\":{\n      \"name\":\"TEAM BAYLOR ICPC23\"\n   },\n   \"coach\":{\n      \"university\":\"Baylor University\",\n      \"name\":\"test_coach111\",\n      \"email\":\"test_coach111@baylor.edu\",\n      \"birthday\":\"1990-10-24\",\n      \"type\":\"COACH\"\n   },\n   \"members\":[\n      {\n         \"university\":\"Baylor University\",\n         \"name\":\"test_std115\",\n         \"email\":\"test_std115@baylor.edu\",\n         \"birthday\":\"1999-10-24\",\n         \"type\":\"STUDENT\"\n      },\n      {\n         \"id\":40\n      },\n      {\n         \"university\":\"Baylor University\",\n         \"name\":\"test_std116\",\n         \"email\":\"test_std116@baylor.edu\",\n         \"birthday\":\"1999-10-24\",\n         \"type\":\"STUDENT\"\n      }\n   ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/contestsRegistration?contestId=2",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"contestsRegistration"
+					],
+					"query": [
+						{
+							"key": "contestId",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SUCCESS::contest-set-readonly",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8082/setReadable?contestId=3",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"setReadable"
+					],
+					"query": [
+						{
+							"key": "contestId",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SUCCESS::contest-set-writeable",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8082/setEditable?contestId=8",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"setEditable"
+					],
+					"query": [
+						{
+							"key": "contestId",
+							"value": "8"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SUCCESS:update-team",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 3,\n    \"name\":\"TEAM BAYLOR ICPC UPDATED NEW\",\n    \"rank\":8,\n    \"state\":\"ACCEPTED\"  \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/teams?contestId=3",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"teams"
+					],
+					"query": [
+						{
+							"key": "contestId",
+							"value": "3",
+							"description": "contestId is required as one team can be assigned to multiple contest. To change a status we need to for which contest he request was made."
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FAIL::update-team-is-not-writeable",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 3,\n    \"name\":\"TEAM BAYLOR ICPC UPDATED01\",\n    \"rank\":8,\n    \"state\":\"ACCEPTED\"  \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/teams?contestId=4",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"teams"
+					],
+					"query": [
+						{
+							"key": "contestId",
+							"value": "4",
+							"description": "contestId is required as one team can be assigned to multiple contest. To change a status we need to for which contest he request was made."
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SUCCESS::promote-to-super-contest",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8082/promote?superContestId=6&teamId=4",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"promote"
+					],
+					"query": [
+						{
+							"key": "superContestId",
+							"value": "6"
+						},
+						{
+							"key": "teamId",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FAIL::promote-to-super-contest-same-team",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"superContestId\": 2,\n    \"teamId\": 4\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/promote?superContestId=6&teamId=4",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"promote"
+					],
+					"query": [
+						{
+							"key": "superContestId",
+							"value": "6"
+						},
+						{
+							"key": "teamId",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FAIL::promote-to-super-contest-not-writeable",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"superContestId\": 2,\n    \"teamId\": 4\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/promote?superContestId=2&teamId=4",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"promote"
+					],
+					"query": [
+						{
+							"key": "superContestId",
+							"value": "2"
+						},
+						{
+							"key": "teamId",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FAIL::promote-to-super-contest-capacity-is-full",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8082/promote?superContestId=5&teamId=3",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"promote"
+					],
+					"query": [
+						{
+							"key": "superContestId",
+							"value": "5"
+						},
+						{
+							"key": "teamId",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FAIL::promote-to-super-contest-rank-greater-than-five",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8082/promote?superContestId=2&teamId=3",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"promote"
+					],
+					"query": [
+						{
+							"key": "superContestId",
+							"value": "2"
+						},
+						{
+							"key": "teamId",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SUCCESS::update-contest",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"capacity\":20,\n   \"date\":\"2022-12-10\",\n   \"name\":\"CONTEST-001-UPDATED-01\",\n   \"registrationAllowed\":true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/contest?contestId=12",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
 					"path": [
 						"contest"
+					],
+					"query": [
+						{
+							"key": "contestId",
+							"value": "12"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FAIL::update-contest-not-writeable",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"id\": 11,\n   \"capacity\":20,\n   \"date\":\"2022-12-10\",\n   \"name\":\"CONTEST-001-UPDATED-01\",\n   \"registrationAllowed\":true,\n   \"registrationFrom\":\"2022-12-10\",\n   \"isWriteable\" : false,\n   \"registrationTo\":\"2022-12-10\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/contest?contestId=11",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"contest"
+					],
+					"query": [
+						{
+							"key": "contestId",
+							"value": "11"
+						}
 					]
 				}
 			},

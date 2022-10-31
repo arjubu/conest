@@ -5,6 +5,7 @@ import com.bu.softwareengineering.contest.domain.enumeration.PersonType;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
@@ -24,15 +25,19 @@ public class Person implements Serializable {
     private Long id;
 
     @Column(name = "university")
+    @NotNull(message = "University name is required!")
     private String university;
 
     @Column(name = "name")
+    @NotNull(message = "Name is required!")
     private String name;
 
     @Column(name = "email")
+    @NotNull(message = "E-mail is required!")
     private String email;
 
     @Column(name = "birthday")
+    @NotNull(message = "Birthday is required!")
     private Date birthday;
 
     @Enumerated(EnumType.STRING)

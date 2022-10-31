@@ -18,10 +18,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -43,6 +40,9 @@ class ApplicationTests {
 		Contest parentContest = contestRepository.findByName("CONTEST-001");
 		List<Contest> subContest = contestRepository.findAllByParent(parentContest);
 		System.out.println("Contest: "+parentContest.getName());
+		Iterator<Contest> contestIterator =subContest.listIterator();
+		while (contestIterator.hasNext())
+			contestIterator.next();
 		for (Contest cn : subContest){
 			System.out.println("-Sub-contest: "+cn.getName());
 			for (ContestTeam tm : cn.getContestTeams()){
