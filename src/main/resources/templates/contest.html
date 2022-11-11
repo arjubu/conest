@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>Contest</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body onload="connect()">
+    <table class="table table-responsive table-bordered table-striped" id="contest-table">
+        <thead>
+            <tr>
+                <th th:scope="col">Id</th>
+                <th th:scope="col">Capacity</th>
+                <th th:scope="col">Date</th>
+                <th th:scope="col">Name</th>
+                <th th:scope="col">Registration Allowed</th>
+                <th th:scope="col">Registration From</th>
+                <th th:scope="col">Registration To</th>
+            </tr>
+        </thead>
+        <tbody id="contest-table-body">
+            <tr th:scope="row" th:each="contest : ${allContest}">
+                <td class="align-middle" th:text="${contest.getId()}"></td>
+                <td class="align-middle" th:text="${contest.getCapacity()}"></td>
+                <td class="align-middle" th:text="${contest.getDate()}"></td>
+                <td class="align-middle" th:text="${contest.getName()}"></td>
+                <td class="align-middle" th:text="${contest.getRegistrationAllowed()}"></td>
+                <td class="align-middle" th:text="${contest.getRegistrationFrom()}"></td>
+                <td class="align-middle" th:text="${contest.getRegistrationTo()}"></td>
+
+            </tr>
+        </tbody>
+    </table>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <script src="contest.js"></script>
+</body>
+</html>
